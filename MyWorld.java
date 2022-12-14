@@ -15,6 +15,8 @@ public class MyWorld extends World
      */
     public static int score;
     Label scoreLabel;
+    int level = 1;
+    
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -45,12 +47,14 @@ public class MyWorld extends World
     {
         score++;
         scoreLabel.setValue(score);
+        if(score % 3 == 0) level += 1;
     }
     
     //Instanciates an apple on the scene
     public void createApple()
     {
         Apple apple = new Apple();
+        apple.setSpeed(level);
         int x = Greenfoot.getRandomNumber(600);
         addObject(apple, x, 0);
     }
