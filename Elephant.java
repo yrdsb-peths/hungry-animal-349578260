@@ -55,6 +55,7 @@ public class Elephant extends Actor
     public void act()
     {
         // Add your action code here.
+        // Moves the elephant left and right and changes way the elephant is facing
         if(Greenfoot.isKeyDown("left")) 
         {
             move(-3);

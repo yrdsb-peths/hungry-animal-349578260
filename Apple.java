@@ -21,6 +21,7 @@ public class Apple extends Actor
         setLocation(getX(), getY() + speedModifier );
         
         //Removes the apple when it touches the ground
+        // Activates the gameover screen when it touches the ground
         MyWorld world = (MyWorld) getWorld();
         if(getY() >= world.getHeight())
         {
