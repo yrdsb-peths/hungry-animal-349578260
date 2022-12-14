@@ -16,6 +16,10 @@ public class MyWorld extends World
     public static int score;
     Label scoreLabel;
     int level = 1;
+    boolean gameOverState = false;
+    SimpleTimer appleTimer = new SimpleTimer();
+    double spawnRateInS = 1;
+    int time;
     
     public MyWorld()
     {    
@@ -30,16 +34,28 @@ public class MyWorld extends World
         scoreLabel = new Label(0, 70);
         addObject(scoreLabel, 50, 50);
         score = 0;
-        
-        createApple();
+    }
+    
+    public void act()
+    {
+        if(gameOverState == false) time += appleTimer.millisElapsed();
+        if(time > spawnRateInS * 100000 && gameOverState == false)
+        {
+            createApple();
+            System.out.println("true");
+        }
     }
     
     //Ends the game
     public void gameOver()
     {
-        Label gameOverLabel = new Label("Game Over", 100);
-        addObject(gameOverLabel, 300, 200);
-        score = 0;
+        if(gameOverState = false)
+        {
+            Label gameOverLabel = new Label("Game Over", 100);
+            addObject(gameOverLabel, 300, 200);
+            score = 0;
+        }
+        gameOverState = true;
     }
     
     //Increases the score
@@ -54,8 +70,10 @@ public class MyWorld extends World
     public void createApple()
     {
         Apple apple = new Apple();
-        apple.setSpeed(level);
+        apple.setSpeed(level * 2);
         int x = Greenfoot.getRandomNumber(600);
         addObject(apple, x, 0);
+        time = 0;
+        appleTimer.mark();
     }
 }
