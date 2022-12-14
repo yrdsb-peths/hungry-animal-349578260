@@ -13,7 +13,7 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-    public static int score = 0;
+    public static int score;
     Label scoreLabel;
     public MyWorld()
     {    
@@ -27,6 +27,7 @@ public class MyWorld extends World
         //Creation of a label
         scoreLabel = new Label(0, 70);
         addObject(scoreLabel, 50, 50);
+        score = 0;
         
         createApple();
     }
@@ -36,6 +37,7 @@ public class MyWorld extends World
     {
         Label gameOverLabel = new Label("Game Over", 100);
         addObject(gameOverLabel, 300, 200);
+        score = 0;
     }
     
     //Increases the score
