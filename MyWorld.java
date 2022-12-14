@@ -39,22 +39,29 @@ public class MyWorld extends World
     public void act()
     {
         if(gameOverState == false) time += appleTimer.millisElapsed();
+        else
+        {
+            if(Greenfoot.isKeyDown("space"))
+            {
+                MyWorld gameWorld = new MyWorld();
+                Greenfoot.setWorld(gameWorld);
+            }
+        }
         if(time > spawnRateInS * 100000 && gameOverState == false)
         {
             createApple();
-            System.out.println("true");
         }
     }
     
     //Ends the game
     public void gameOver()
     {
-        if(gameOverState = false)
-        {
-            Label gameOverLabel = new Label("Game Over", 100);
-            addObject(gameOverLabel, 300, 200);
-            score = 0;
-        }
+        Label gameOverLabel = new Label("Game Over", 100);
+        Label restartLabel = new Label("Press Space to Try Again!", 60);
+        
+        addObject(gameOverLabel, 300, 200);
+        addObject(restartLabel, getWidth()/2, (getHeight()/3) * 2);
+        score = 0;
         gameOverState = true;
     }
     
